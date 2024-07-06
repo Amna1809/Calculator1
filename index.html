@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Grade Calculator</h2>
+        <form id="gradeForm">
+            <label for="subject1">Subject 1:</label>
+            <input type="number" id="subject1" name="subject1" min="0" max="100" required>
+            <label for="subject2">Subject 2:</label>
+            <input type="number" id="subject2" name="subject2" min="0" max="100" required>
+            <label for="subject3">Subject 3:</label>
+            <input type="number" id="subject3" name="subject3" min="0" max="100" required>
+            <label for="subject4">Subject 4:</label>
+            <input type="number" id="subject4" name="subject4" min="0" max="100" required>
+            <button type="button" onclick="calculateAverage()">Calculate Average</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateAverage() {
+            const grades = [];
+            grades.push(parseFloat(document.getElementById('subject1').value));
+            grades.push(parseFloat(document.getElementById('subject2').value));
+            grades.push(parseFloat(document.getElementById('subject3').value));
+            grades.push(parseFloat(document.getElementById('subject4').value));
+
+            let sum = 0;
+            for (let i = 0; i < grades.length; i++) {
+                sum += grades[i];
+            }
+
+            const average = sum / grades.length;
+            const passingGrade = 50;
+            const name = "Your Name"; // Replace with your name
+            const vuid = "Your VUID"; // Replace with your VUID
+
+            let resultMessage = `Name: ${name}<br>VUID: ${vuid}<br>Average Grade: ${average.toFixed(2)}<br>`;
+            if (average >= passingGrade) {
+                resultMessage += "Status: Pass";
+            } else {
+                resultMessage += "Status: Fail";
+            }
+
+            document.getElementById('result').innerHTML = resultMessage;
+        }
+    </script>
+</body>
+</html>
